@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+
 public class GridMovement : MonoBehaviour
 {
 
@@ -10,33 +11,41 @@ public class GridMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public Tilemap floortiles;
 
-    public int stepsRemaining;
-
     private Vector3Int _targetCell;
     private Vector2 _targetPosition;
 
-    public Sprite finishTile;
+    public GameObject playerSprite;
+    private SpriteRenderer sr;
 
     const int maxSteps = 15;
+    private int stepsRemaining;
 
-    private float offset = 0.5f;
-
+    private Dictionary<string, int> inventory; 
 
     // Start is called before the first frame update
     void Start()
     {
 
+        // set steps to max steps 
         stepsRemaining = maxSteps;
 
         
-
+        // set position and snap to grid 
         Vector3 initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-
         _targetCell = grid.WorldToCell(initialPosition);
-        _targetPosition = grid.CellToWorld(_targetCell); //snaps to target cell 
-        _targetPosition.x += offset;
-
+        _targetPosition = grid.GetCellCenterWorld(_targetCell); //snaps to target cell 
         transform.position = _targetPosition;
+
+
+        // initialize sprite renderer 
+        sr = playerSprite.GetComponent<SpriteRenderer>();
+
+
+        // initialize inventory 
+        inventory = new Dictionary<string, int>();
+        inventory["wood"] = 0;
+        inventory["aquacell"] = 0;
+
 
 
     }
@@ -60,35 +69,29 @@ public class GridMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             gridMovement.x -= 1;
+            sr.flipX = true;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             gridMovement.x += 1;
+            sr.flipX = false;
         }
 
         if (gridMovement != Vector3Int.zero)
         {
             _targetCell += gridMovement;
 
-            if (floortiles.HasTile(_targetCell - new Vector3Int(2, 2, 0)))
+            if (floortiles.HasTile(_targetCell) && stepsRemaining > 0)
             {
-                _targetPosition = grid.CellToWorld(_targetCell);
-                _targetPosition.x += offset;
-
+                _targetPosition = grid.GetCellCenterWorld(_targetCell);
                 stepsRemaining -= 1;
                 Debug.Log(stepsRemaining);
-                if (stepsRemaining < 0)
-                {
-                    Debug.Log("Game over");
-                    // load game over screen
-                }
             }
             else
             {
                 _targetCell -= gridMovement;
             }
-
 
         }
         MoveToward(_targetPosition);
@@ -103,14 +106,22 @@ public class GridMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+
+        // if colliding with oil object: 
         if (col.gameObject.tag == "oil")
         {
-            if (stepsRemaining < maxSteps)
-            {
-                stepsRemaining = maxSteps;
-            }
+            col.gameObject.SetActive(false); // deactivate object for rest of scene 
+            stepsRemaining = maxSteps; // reset step counter
         }
 
+        // if colliding with wood object:
+        else if (col.gameObject.tag == "wood")
+        {
+            col.gameObject.SetActive(false); 
+            inventory["wood"] += 1;
+            Debug.Log("Wood amount:");
+            Debug.Log(inventory["wood"]);
+        }
 
     }
 
