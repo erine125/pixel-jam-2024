@@ -42,15 +42,8 @@ public class BuildDam : MonoBehaviour
                         tilemap.SetTile(tilemap.WorldToCell(position), damTile); // place tile
                         walkableTilemap.SetTile(tilemap.WorldToCell(position), damTile); // place tile on walkable tilemap so player can walk there
                     }
-                    
                 }
-
-                
-            } 
-
-
-
-            
+            }
         }
     }
 }

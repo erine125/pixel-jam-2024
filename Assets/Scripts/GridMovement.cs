@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 
 public class GridMovement : MonoBehaviour
@@ -28,14 +29,12 @@ public class GridMovement : MonoBehaviour
 
         // set steps to max steps 
         stepsRemaining = maxSteps;
-
         
         // set position and snap to grid 
         Vector3 initialPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         _targetCell = grid.WorldToCell(initialPosition);
         _targetPosition = grid.GetCellCenterWorld(_targetCell); //snaps to target cell 
         transform.position = _targetPosition;
-
 
         // initialize sprite renderer 
         sr = playerSprite.GetComponent<SpriteRenderer>();
@@ -44,6 +43,13 @@ public class GridMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // press R to reload level
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        }
 
         Vector3Int gridMovement = new Vector3Int();
 
@@ -60,13 +66,13 @@ public class GridMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             gridMovement.x -= 1;
-            sr.flipX = true;
+            sr.flipX = false;
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
             gridMovement.x += 1;
-            sr.flipX = false;
+            sr.flipX = true;
         }
 
         if (gridMovement != Vector3Int.zero)
