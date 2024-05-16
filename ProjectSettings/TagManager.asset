@@ -6,6 +6,8 @@ TagManager:
   tags:
   - oil
   - wood
+  - dam
+  - aquacell
   layers:
   - Default
   - TransparentFX

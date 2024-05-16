@@ -17,10 +17,10 @@ public class GridMovement : MonoBehaviour
     public GameObject playerSprite;
     private SpriteRenderer sr;
 
-    const int maxSteps = 15;
-    private int stepsRemaining;
 
-    private Dictionary<string, int> inventory; 
+    public int maxSteps = 15;
+    public int stepsRemaining;
+
 
     // Start is called before the first frame update
     void Start()
@@ -39,15 +39,6 @@ public class GridMovement : MonoBehaviour
 
         // initialize sprite renderer 
         sr = playerSprite.GetComponent<SpriteRenderer>();
-
-
-        // initialize inventory 
-        inventory = new Dictionary<string, int>();
-        inventory["wood"] = 0;
-        inventory["aquacell"] = 0;
-
-
-
     }
 
     // Update is called once per frame
@@ -104,25 +95,6 @@ public class GridMovement : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-
-        // if colliding with oil object: 
-        if (col.gameObject.tag == "oil")
-        {
-            col.gameObject.SetActive(false); // deactivate object for rest of scene 
-            stepsRemaining = maxSteps; // reset step counter
-        }
-
-        // if colliding with wood object:
-        else if (col.gameObject.tag == "wood")
-        {
-            col.gameObject.SetActive(false); 
-            inventory["wood"] += 1;
-            Debug.Log("Wood amount:");
-            Debug.Log(inventory["wood"]);
-        }
-
-    }
+    
 
 }
