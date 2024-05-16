@@ -1,0 +1,9 @@
+bg @ 2 fps
+fg @ 1 fps
+
+LAYERING from TOP to BOTTOM: 
+fg f1-2 @ 1 fps
+active sprites & player, pedestal, door, etc
+bg f1-8 @ 2 fps
+floor tilemap
+water tilemap for the whole map
