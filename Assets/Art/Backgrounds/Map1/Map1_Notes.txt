@@ -1,0 +1,9 @@
+bg @ 2 fps
+fg @ 2 fps
+
+LAYERING from TOP to BOTTOM: 
+fg f1-8
+active sprites & player, pedestal, door, etc
+bg f1-8
+shadows
+tilemap
