@@ -41,7 +41,6 @@ namespace DesignPatterns.Command
 
             Vector3Int currentCell = grid.WorldToCell(transform.position);
 
-
             Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
 
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
@@ -57,6 +56,8 @@ namespace DesignPatterns.Command
         {
             // calculate target position given the current position and grid movement
             Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
+
+            // return whether or not there is a walkable tile there
             return walkableTiles.HasTile(targetCell);
         }
 

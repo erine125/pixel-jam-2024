@@ -27,9 +27,14 @@ namespace DesignPatterns.Command
         // logic of thing to do goes here
         public void Execute()
         {
-            // move by vector IF player has enough steps remaining
+        
+            // play sound effect 
             _audiosource.PlayOneShot(_playerMover.moveSFX, 0.8f);
-            _playerMover.StartCoroutine(_playerMover.MoveToPosition(_movement)); // start coroutine
+
+            // start movement animation coroutine 
+            _playerMover.StartCoroutine(_playerMover.MoveToPosition(_movement)); 
+
+            // decrement steps 
             _gameState.DecrementSteps();
             Debug.LogFormat("Steps remaining: {0}", _gameState.stepsRemaining);
 

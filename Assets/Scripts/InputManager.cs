@@ -94,16 +94,17 @@ namespace DesignPatterns.Command
                 // check if movement is allowed
                 if (playerMover.IsValidMove(gridMovement))
                 {
-
+                    // check if player has any steps remaining
                     if (gameState.stepsRemaining > 0)
                     {
-                        _audiosource.PlayOneShot(playerMover.moveSFX, 0.8f);
+                        // invoke command. sfx will be played when command executes.
                         ICommand command = new MoveCommand(playerMover, gameState, gridMovement);
                         CommandInvoker.ExecuteCommand(command);
                     }
                     else
                     {
-                        _audiosource.PlayOneShot(playerMover.cantMoveSFX, 0.8f);  // play sfx indicating can't move
+                        // play sfx indicating can't move
+                        _audiosource.PlayOneShot(playerMover.cantMoveSFX, 0.8f);
                     }
 
 
