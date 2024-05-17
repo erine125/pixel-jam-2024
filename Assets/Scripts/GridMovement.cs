@@ -83,7 +83,7 @@ public class GridMovement : MonoBehaviour
             {
                 _targetPosition = grid.GetCellCenterWorld(_targetCell);
                 stepsRemaining -= 1;
-                Debug.Log(stepsRemaining);
+                Debug.LogFormat("Steps remaining: {0}", stepsRemaining);
             }
             else
             {

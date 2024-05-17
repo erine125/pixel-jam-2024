@@ -1740,10 +1740,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1141103166}
   - component: {fileID: 1141103165}
-  - component: {fileID: 1141103164}
   - component: {fileID: 1141103167}
   - component: {fileID: 1141103168}
+  - component: {fileID: 1141103171}
   - component: {fileID: 1141103170}
+  - component: {fileID: 1141103169}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1751,24 +1752,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1141103164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141103163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da152daaab536a346a0f4e634c2c2b15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 1200474714}
-  moveSpeed: 10
-  floortiles: {fileID: 1213763394}
-  playerSprite: {fileID: 1669798339}
-  maxSteps: 15
-  stepsRemaining: 0
 --- !u!212 &1141103165
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1909,6 +1892,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1141103169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141103163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6df1a99dc77a54cb5c71c6df0e7d49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grid: {fileID: 1200474714}
+  walkableTiles: {fileID: 1213763394}
+  obstacleTiles: {fileID: 0}
+  moveSpeed: 5
 --- !u!114 &1141103170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,16 +1917,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1141103163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a51798784250e8f4fa1e8b626718568a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f45008c0ff25bd42aa9109f9e5e3ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1141103169}
+  gameState: {fileID: 1141103171}
+  forwardKey: 119
+  downKey: 115
+  leftKey: 97
+  rightKey: 100
+  undoKey: 101
+  resetKey: 114
+--- !u!114 &1141103171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141103163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e848dbe1c8a904a9cb5cd94a2570f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSteps: 15
+  stepsRemaining: 0
   woodCount: 0
   aquacellCount: 0
   totalAquacells: 2
-  door: {fileID: 935794452}
-  pedestals:
-  - {fileID: 1382313242}
-  - {fileID: 1934394499}
 --- !u!1 &1200474713
 GameObject:
   m_ObjectHideFlags: 0
