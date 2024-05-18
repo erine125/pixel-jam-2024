@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
-namespace DesignPatterns.Command
+namespace CommandPattern
 {
     // moves the player one space, checking if the space can be moved on
     public class PlayerMover : MonoBehaviour
@@ -58,6 +58,7 @@ namespace DesignPatterns.Command
             Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
             if (winTiles.HasTile(targetCell)){
 
+                Debug.Log("Win!");
                 Vector3Int finalMovement = new Vector3Int(3, 0, 0);
                 StartCoroutine(MoveToPosition(finalMovement, LoadNextScene));
                 

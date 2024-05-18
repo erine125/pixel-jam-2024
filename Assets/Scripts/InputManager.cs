@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace DesignPatterns.Command
+namespace CommandPattern
 {
     public class InputManager : MonoBehaviour
     {

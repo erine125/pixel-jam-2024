@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DesignPatterns.Command
+namespace CommandPattern
 {
     public class GameState : MonoBehaviour
     {
@@ -21,6 +21,8 @@ namespace DesignPatterns.Command
         private Animator[] pedestalAnimators;
 
         private PlayerMover _playerMover;
+
+        public UIManager _UIManager;
 
         public void Start()
         {
@@ -47,11 +49,14 @@ namespace DesignPatterns.Command
         {
             if (stepsRemaining > 0)
                 stepsRemaining--;
+
+            _UIManager.UpdateStepCounter(stepsRemaining);
         }
 
         public void IncrementSteps()
         {
             stepsRemaining++;
+            _UIManager.UpdateStepCounter(stepsRemaining);
         }
 
         public int ReplenishSteps()
@@ -64,12 +69,14 @@ namespace DesignPatterns.Command
                 stepsRemaining = maxSteps;
             }
 
+            _UIManager.UpdateStepCounter(stepsRemaining);
             return savedSteps;
         }
 
         public void SetSteps(int steps)
         { // set steps to a specific value. this is needed for the undo methods. 
             stepsRemaining = steps;
+            _UIManager.UpdateStepCounter(stepsRemaining);
         }
 
         public void IncrementWood()
