@@ -3,7 +3,7 @@ fg f1-2 @ 1 fps
 
 LAYERING from TOP to BOTTOM: 
 fg f1-2 @ 1 fps
-active sprites & player, pedestal, door, etc
+active sprite & player, pedestal, door, etc
 shadows
 above-walkable (the sand)
 green map and ditch etc., aka the floor tilemap 
