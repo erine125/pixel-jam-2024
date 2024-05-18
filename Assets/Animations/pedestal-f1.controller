@@ -32,11 +32,14 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 7716557515825216120}
-    m_Position: {x: 200, y: 0, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 8668033618798795080}
     m_Position: {x: 297.70374, y: 113.85184, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7031702784379062329}
+    m_Position: {x: 365.73938, y: 4.294525, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 7423934179890229475}
+    m_Position: {x: 442.2401, y: 256.05148, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -47,7 +50,7 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 8668033618798795080}
---- !u!1102 &7716557515825216120
+--- !u!1102 &7031702784379062329
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
@@ -68,6 +71,32 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: e3fef70d92b76334782a117618a878df, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
+--- !u!1102 &7423934179890229475
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Pedestal_Unlight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: c5fd6f5950d8193459030866a130127b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

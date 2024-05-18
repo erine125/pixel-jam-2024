@@ -87,7 +87,6 @@ namespace DesignPatterns.Command
                 return;
             }
 
-            
             if (gridMovement != Vector3Int.zero)
             {
                 // check if movement is allowed
@@ -96,7 +95,8 @@ namespace DesignPatterns.Command
                     // check if player has any steps remaining
                     if (gameState.stepsRemaining > 0)
                     {
-    
+
+                        playerMover.CheckWin(gridMovement); // check if the space you are trying to move to is a winning space, if so we can simply exit 
 
                         // invoke command. sfx will be played when command executes.
                         ICommand command = new MoveCommand(playerMover, gameState, gridMovement, playerMover.foundObject(gridMovement));

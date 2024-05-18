@@ -2,81 +2,117 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameState : MonoBehaviour
+namespace DesignPatterns.Command
 {
-    public int maxSteps = 15;
-    public int stepsRemaining; // initialize to maxSteps
-
-    public int woodCount = 0;
-    public int aquacellCount = 0;
-
-    public int totalAquacells = 2; // can set to however many total aquacells there are in this scene
-
-    public void Start()
+    public class GameState : MonoBehaviour
     {
-        stepsRemaining = maxSteps; 
-    }
+        public int maxSteps = 15;
+        public int stepsRemaining; // initialize to maxSteps
 
-    public void DecrementSteps()
-    {
-        if (stepsRemaining > 0)
-            stepsRemaining--;
-    }
+        public int woodCount = 0;
+        public int aquacellCount = 0;
 
-    public void IncrementSteps()
-    {
-        stepsRemaining++;
-    }
+        public int totalAquacells = 2; // can set to however many total aquacells there are in this scene
 
-    public int ReplenishSteps()
-        // replenish steps back to max.
-        // return the # of steps remaining before replenishing, so it can be saved
-    {
-        int savedSteps = stepsRemaining;
-        if (stepsRemaining < maxSteps)
+        public GameObject door;
+        private Animator doorAnimator;
+
+        public GameObject[] pedestals;
+        private Animator[] pedestalAnimators;
+
+        private PlayerMover _playerMover;
+
+        public void Start()
         {
-            stepsRemaining = maxSteps; 
+            // initialize steps remaining
+            stepsRemaining = maxSteps;
+
+            // initialize animators
+            doorAnimator = door.GetComponent<Animator>();
+            pedestalAnimators = new Animator[totalAquacells];
+
+            for (int i = 0; i < totalAquacells; i++)
+            {
+                GameObject pedestal = pedestals[i];
+                Animator pedestalAnimator = pedestal.GetComponent<Animator>();
+                pedestalAnimators[i] = pedestalAnimator;
+            }
+
+            // initialize playerMover
+            _playerMover = GetComponent<PlayerMover>();
         }
 
-        return savedSteps;
+
+        public void DecrementSteps()
+        {
+            if (stepsRemaining > 0)
+                stepsRemaining--;
+        }
+
+        public void IncrementSteps()
+        {
+            stepsRemaining++;
+        }
+
+        public int ReplenishSteps()
+        // replenish steps back to max.
+        // return the # of steps remaining before replenishing, so it can be saved
+        {
+            int savedSteps = stepsRemaining;
+            if (stepsRemaining < maxSteps)
+            {
+                stepsRemaining = maxSteps;
+            }
+
+            return savedSteps;
+        }
+
+        public void SetSteps(int steps)
+        { // set steps to a specific value. this is needed for the undo methods. 
+            stepsRemaining = steps;
+        }
+
+        public void IncrementWood()
+        {
+            woodCount++;
+            // TODO: update UI
+        }
+
+        public void DecrementWood()
+        {
+            woodCount--;
+            // TODO: update UI
+        }
+
+        public void IncrementAquacells()
+        {
+            aquacellCount++;
+            pedestalAnimators[aquacellCount - 1].Play("Pedestal_LightUp"); // light up next pedestal
+
+            if (AllAquacellsCollected())
+            {
+                doorAnimator.Play("DoorOpen"); // play door open animation
+                _playerMover.PlaceWalkableWinTiles();
+            }
+        }
+
+        public void DecrementAquacells()
+        {
+            aquacellCount--;
+            pedestalAnimators[aquacellCount].Play("Idle"); // unlight most recently lit pedestal
+
+            if (!AllAquacellsCollected())
+            {
+                doorAnimator.Play("Idle");
+                _playerMover.RemoveWalkableWinTiles();
+            }
+        }
+
+        public bool AllAquacellsCollected()
+        {
+            return (aquacellCount == totalAquacells);
+        }
+
+
     }
-
-    public void SetSteps(int steps)
-    { // set steps to a specific value. this is needed for the undo methods. 
-        stepsRemaining = steps;
-    }
-
-    public void IncrementWood()
-    {
-        woodCount++;
-        // TODO: update UI
-    }
-
-    public void DecrementWood()
-    {
-        woodCount--;
-        // TODO: update UI
-    }
-
-    public void IncrementAquacells()
-    {
-        aquacellCount++;
-        // TODO: play pedestal animation 
-        Debug.LogFormat("Aquacell Count: {0}", aquacellCount);
-    }
-
-    public void DecrementAquacells()
-    {
-        aquacellCount--;
-        // TODO: unlight pedestals
-        Debug.LogFormat("Aquacell Count: {0}", aquacellCount);
-    }
-
-    public bool AllAquacellsCollected()
-    {
-        return (aquacellCount == totalAquacells);
-    }
-
-
-
 }

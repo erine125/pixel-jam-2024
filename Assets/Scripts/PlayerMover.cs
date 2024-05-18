@@ -3,20 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 namespace DesignPatterns.Command
 {
     // moves the player one space, checking if the space can be moved on
-
     public class PlayerMover : MonoBehaviour
     {
         public Grid grid;
         public Tilemap walkableTiles;
         public Tilemap pickupTiles;
+        public Tilemap winTiles; 
 
         public Tile oilcanTile;
         public Tile woodTile;
-        public Tile aquacellTile; 
+        public Tile aquacellTile;
+        public Tile floorTile;
 
         public float moveSpeed = 8f;
 
@@ -42,15 +44,24 @@ namespace DesignPatterns.Command
         {
 
             // calculate target position given the current position and grid movement
-
-            Vector3Int currentCell = grid.WorldToCell(transform.position);
-
             Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
 
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
 
             // move player position
             transform.position = targetPosition;
+
+        }
+
+        public void CheckWin(Vector3Int gridMovement)
+        {
+            Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
+            if (winTiles.HasTile(targetCell)){
+
+                Vector3Int finalMovement = new Vector3Int(3, 0, 0);
+                StartCoroutine(MoveToPosition(finalMovement, LoadNextScene));
+                
+            }
 
         }
 
@@ -122,7 +133,7 @@ namespace DesignPatterns.Command
         }
 
         // Coroutine method for animating player movement
-        public IEnumerator MoveToPosition(Vector3Int gridMovement)
+        public IEnumerator MoveToPosition(Vector3Int gridMovement, Action onCompleted = null)
         {
             Vector3Int currentCell = grid.WorldToCell(transform.position);
             Vector3Int targetCell = currentCell + gridMovement;
@@ -132,6 +143,48 @@ namespace DesignPatterns.Command
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
                 yield return null;
+            }
+
+            onCompleted?.Invoke();
+        }
+
+        private void LoadNextScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // change this to load the next scene instead 
+        }
+
+
+        public void PlaceWalkableWinTiles()
+        {
+            BoundsInt winBounds = winTiles.cellBounds; // get bounds of win tilemap
+            for (int x = winBounds.xMin; x < winBounds.xMax; x++)
+            {
+                for (int y = winBounds.yMin; y < winBounds.yMax; y++)
+                {
+                    Vector3Int position = new Vector3Int(x, y, 0);
+                    if (winTiles.HasTile(position))
+                    {
+                        walkableTiles.SetTile(position, floorTile);
+                    }
+                }
+            }
+        }
+
+        public void RemoveWalkableWinTiles()
+        {
+            BoundsInt winBounds = winTiles.cellBounds; // get bounds of win tilemap
+            for (int x = winBounds.xMin; x < winBounds.xMax; x++)
+            {
+                for (int y = winBounds.yMin; y < winBounds.yMax; y++)
+                {
+                    Vector3Int position = new Vector3Int(x, y, 0);
+
+                    if (winTiles.HasTile(position))
+                    {
+                        walkableTiles.SetTile(position, null);
+                    }
+                    
+                }
             }
         }
 
