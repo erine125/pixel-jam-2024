@@ -28,12 +28,17 @@ public class GameState : MonoBehaviour
         stepsRemaining++;
     }
 
-    public void ReplenishSteps()
+    public int ReplenishSteps()
+        // replenish steps back to max.
+        // return the # of steps remaining before replenishing, so it can be saved
     {
+        int savedSteps = stepsRemaining;
         if (stepsRemaining < maxSteps)
         {
             stepsRemaining = maxSteps; 
         }
+
+        return savedSteps;
     }
 
     public void SetSteps(int steps)
@@ -57,18 +62,21 @@ public class GameState : MonoBehaviour
     {
         aquacellCount++;
         // TODO: play pedestal animation 
+        Debug.LogFormat("Aquacell Count: {0}", aquacellCount);
     }
 
     public void DecrementAquacells()
     {
         aquacellCount--;
         // TODO: unlight pedestals
+        Debug.LogFormat("Aquacell Count: {0}", aquacellCount);
     }
 
     public bool AllAquacellsCollected()
     {
         return (aquacellCount == totalAquacells);
     }
+
 
 
 }

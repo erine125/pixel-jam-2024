@@ -85,7 +85,6 @@ namespace DesignPatterns.Command
             if (playerMover == null || gameState == null)
             {
                 return;
-            
             }
 
             
@@ -97,8 +96,10 @@ namespace DesignPatterns.Command
                     // check if player has any steps remaining
                     if (gameState.stepsRemaining > 0)
                     {
+    
+
                         // invoke command. sfx will be played when command executes.
-                        ICommand command = new MoveCommand(playerMover, gameState, gridMovement);
+                        ICommand command = new MoveCommand(playerMover, gameState, gridMovement, playerMover.foundObject(gridMovement));
                         CommandInvoker.ExecuteCommand(command);
                     }
                     else

@@ -12,7 +12,11 @@ namespace DesignPatterns.Command
     {
         public Grid grid;
         public Tilemap walkableTiles;
-        public Tilemap obstacleTiles;
+        public Tilemap pickupTiles;
+
+        public Tile oilcanTile;
+        public Tile woodTile;
+        public Tile aquacellTile; 
 
         public float moveSpeed = 8f;
 
@@ -45,7 +49,6 @@ namespace DesignPatterns.Command
 
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
 
-
             // move player position
             transform.position = targetPosition;
 
@@ -61,8 +64,64 @@ namespace DesignPatterns.Command
             return walkableTiles.HasTile(targetCell);
         }
 
+        public string foundObject(Vector3Int gridMovement)
+            // returns a string if there is an object found at the target cell
+            // strings will be either "oil", "wood", or "aquacell"
+            // returns null if no object found. 
+        {
+            Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
+            Tile tileAtCell = pickupTiles.GetTile(targetCell) as Tile;
 
-        // Coroutine method
+            if (tileAtCell == woodTile)
+            {
+                Debug.Log("Found Wood");
+                return "wood";
+            } else if (tileAtCell == oilcanTile)
+            {
+                Debug.Log("Found Oil");
+                return "oil";
+            } else if (tileAtCell == aquacellTile)
+            {
+                Debug.Log("Found Aquacell");
+                return "aquacell";
+            } else
+            {
+                return null;
+            }
+        }
+
+        public Vector3Int clearObject(Vector3Int gridMovement)
+        // given gridMovement position, clear the object that is at that position (if there is one)
+        {
+            // calculate target position given the current position and grid movement
+            Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
+            pickupTiles.SetTile(targetCell, null);
+
+            return targetCell; // returns the position the object was at so it can be saved
+        }
+
+        public void addObject(Vector3Int position, string objectName)
+        // given an object name, and a position, places that object on the object tile map
+        {
+            //Vector3Int targetCell = grid.WorldToCell(transform.position);
+            Tile objectTile = null; 
+            switch (objectName)
+            {
+                case "wood":
+                    objectTile = woodTile;
+                    break;
+                case "oil":
+                    objectTile = oilcanTile;
+                    break;
+                case "aquacell":
+                    objectTile = aquacellTile;
+                    break;
+            }
+
+            pickupTiles.SetTile(position, objectTile);
+        }
+
+        // Coroutine method for animating player movement
         public IEnumerator MoveToPosition(Vector3Int gridMovement)
         {
             Vector3Int currentCell = grid.WorldToCell(transform.position);
@@ -75,7 +134,6 @@ namespace DesignPatterns.Command
                 yield return null;
             }
         }
-
 
     }
 }
