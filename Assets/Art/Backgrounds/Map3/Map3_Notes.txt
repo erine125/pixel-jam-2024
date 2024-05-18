@@ -1,5 +1,5 @@
-bg @ ???
-fg @ 1 fps
+bg f1-8 @ 2 fps
+fg f1-2 @ 1 fps
 
 LAYERING from TOP to BOTTOM: 
 fg f1-2 @ 1 fps
@@ -8,5 +8,5 @@ shadows
 above-walkable (the sand)
 green map and ditch etc., aka the floor tilemap 
 below-walkable
-bg f????
+bg f1-8 @ 2 fps
 water tilemap for the whole map
