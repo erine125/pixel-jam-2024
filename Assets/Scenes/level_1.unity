@@ -5199,7 +5199,7 @@ MonoBehaviour:
   floorTile: {fileID: 11400000, guid: 8ce1f18ddc9be9b428bb10b85190f88d, type: 2}
   moveSpeed: 5
   _audiosource: {fileID: 1141103172}
-  moveSFX: {fileID: 8300000, guid: 720cfba067bf8eb40bc894c2084b8e17, type: 3}
+  moveSFX: {fileID: 8300000, guid: e0dfccb6876a00d439f175f6c2485b4f, type: 3}
   cantMoveSFX: {fileID: 8300000, guid: 3add1cd7999183f4597343f73e15501a, type: 3}
 --- !u!114 &1141103170
 MonoBehaviour:
@@ -5222,7 +5222,7 @@ MonoBehaviour:
   undoKey: 101
   resetKey: 114
   _audiosource: {fileID: 1141103172}
-  moveSFX: {fileID: 8300000, guid: 720cfba067bf8eb40bc894c2084b8e17, type: 3}
+  moveSFX: {fileID: 8300000, guid: e0dfccb6876a00d439f175f6c2485b4f, type: 3}
   cantMoveSFX: {fileID: 8300000, guid: 3add1cd7999183f4597343f73e15501a, type: 3}
 --- !u!114 &1141103171
 MonoBehaviour:
