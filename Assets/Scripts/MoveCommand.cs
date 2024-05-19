@@ -23,7 +23,7 @@ namespace CommandPattern
             this._gameState = gameState;
             this._playerMover = player;
             this._movement = moveVector;
-            this._audiosource = player._audiosource;
+            this._audiosource = player.audiosource;
             this._foundObject = foundObject;
             this._savedSteps = 0;
         }

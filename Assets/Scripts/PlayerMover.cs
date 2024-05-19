@@ -10,21 +10,33 @@ namespace CommandPattern
     // moves the player one space, checking if the space can be moved on
     public class PlayerMover : MonoBehaviour
     {
+
+        /* tilemaps and tiles */ 
         public Grid grid;
         public Tilemap walkableTiles;
         public Tilemap pickupTiles;
-        public Tilemap winTiles; 
+        public Tilemap winTiles;
+        public Tilemap shadowTiles; 
 
         public Tile oilcanTile;
         public Tile woodTile;
         public Tile aquacellTile;
         public Tile floorTile;
+        public Tile shadowTile;
 
         public float moveSpeed = 8f;
 
-        public AudioSource _audiosource;
+        /* audio */
+        public AudioSource audiosource;
         public AudioClip moveSFX;
-        public AudioClip cantMoveSFX; 
+        public AudioClip cantMoveSFX;
+
+        /* sprites */
+        public Sprite upSprite;
+        public Sprite downSprite;
+        public Sprite leftSprite;
+        public Sprite rightSprite;
+        public SpriteRenderer spriteRenderer; // note that this sprite renderer is the one on the CHILD object 
 
         private void Start()
         {
@@ -35,7 +47,7 @@ namespace CommandPattern
             transform.position = _targetPosition;
 
             // initialize audio source
-            _audiosource = gameObject.GetComponent<AudioSource>();
+            audiosource = gameObject.GetComponent<AudioSource>();
 
         }
 
@@ -103,19 +115,19 @@ namespace CommandPattern
         }
 
         public Vector3Int clearObject(Vector3Int gridMovement)
-        // given gridMovement position, clear the object that is at that position (if there is one)
+        // given gridMovement position, clear the object that is at that position (and accompanying shadow)
         {
             // calculate target position given the current position and grid movement
             Vector3Int targetCell = grid.WorldToCell(transform.position) + gridMovement;
             pickupTiles.SetTile(targetCell, null);
+            shadowTiles.SetTile(targetCell, null);
 
             return targetCell; // returns the position the object was at so it can be saved
         }
 
         public void addObject(Vector3Int position, string objectName)
-        // given an object name, and a position, places that object on the object tile map
+        // given an object name, and a position, places that object on the object tile map (and accompanying shadow) 
         {
-            //Vector3Int targetCell = grid.WorldToCell(transform.position);
             Tile objectTile = null; 
             switch (objectName)
             {
@@ -130,7 +142,9 @@ namespace CommandPattern
                     break;
             }
 
+            // place object and its shadow on the given position
             pickupTiles.SetTile(position, objectTile);
+            shadowTiles.SetTile(position, shadowTile);
         }
 
         // Coroutine method for animating player movement
@@ -187,6 +201,14 @@ namespace CommandPattern
                     
                 }
             }
+        }
+
+        private void UpdateSpriteDirection(Vector3 direction)
+        {
+            if (direction.x > 0) spriteRenderer.sprite = rightSprite;
+            else if (direction.x < 0) spriteRenderer.sprite = leftSprite;
+            else if (direction.y > 0) spriteRenderer.sprite = upSprite;
+            else if (direction.y < 0) spriteRenderer.sprite = downSprite;
         }
 
     }
