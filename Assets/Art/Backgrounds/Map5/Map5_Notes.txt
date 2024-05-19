@@ -1,13 +1,12 @@
 bg f1-8 @ 2 fps
-fg f1-8 @ 3 fps
+fg f1-2 @ 1 fps
 
 LAYERING from TOP to BOTTOM: 
-- fg f1-8 @ 3 fps
+- fg 
 - active sprite & player, pedestal, door, etc
 - shadows
-- green/tile map and ditch etc., aka the floor tilemap 
+- above-walkable
+- tile map and ditch etc., aka the floor tilemap 
 - below-walkable
-- bg f1-8 @ 2 fps
+- bg
 - water tilemap for the whole map
-
-this map uses ditch-custom1
