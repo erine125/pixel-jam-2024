@@ -60,6 +60,9 @@ namespace CommandPattern
 
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
 
+            // update sprite
+            UpdateSpriteDirection(gridMovement);
+
             // move player position
             transform.position = targetPosition;
 
@@ -153,6 +156,9 @@ namespace CommandPattern
             Vector3Int currentCell = grid.WorldToCell(transform.position);
             Vector3Int targetCell = currentCell + gridMovement;
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
+
+            // update sprite
+            UpdateSpriteDirection(gridMovement);
 
             while (Vector3.Distance(transform.position, targetPosition) > 0.01f)
             {
