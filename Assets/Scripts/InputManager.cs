@@ -29,6 +29,8 @@ namespace CommandPattern
         public Tilemap ditchTilemap;
         public Tilemap damTilemap;
 
+        public WaterManager waterManager;
+
         //private void Start()
         //{
 
@@ -109,7 +111,7 @@ namespace CommandPattern
                 {
                     if (damTilemap.HasTile(clickedCell))
                     {
-                        ICommand command = new BreakDamCommand(playerMover, gameState, clickedCell);
+                        ICommand command = new BreakDamCommand(playerMover, gameState, waterManager, clickedCell);
                         CommandInvoker.ExecuteCommand(command);
                     }
                     else
