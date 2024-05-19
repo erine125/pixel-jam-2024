@@ -197,7 +197,7 @@ namespace CommandPattern
 
         private void LoadNextScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name); // change this to load the next scene instead 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
 
