@@ -51,6 +51,12 @@ namespace CommandPattern
                 {
                     _gameState.IncrementAquacells(); // add aquacell to inventory and play animation 
                     _savedPosition = _playerMover.clearObject(_movement);  // remove aquacell from map and save position
+
+                } else if (_foundObject == "wood")
+                {
+                    Debug.Log("Found Wood");
+                    _gameState.IncrementWood();
+                    _savedPosition = _playerMover.clearObject(_movement);
                 }
             }
 
@@ -70,9 +76,14 @@ namespace CommandPattern
 
                 else if (_foundObject == "aquacell")
                 {
-                    Debug.Log("Undoing Aquacell Pickup");
                     _gameState.DecrementAquacells(); // remove aquacell from inventory and play animation
                     _playerMover.addObject(_savedPosition, "aquacell"); // add aquacell back to map
+                }
+
+                else if (_foundObject == "wood")
+                {
+                    _gameState.DecrementWood(); // remove aquacell from inventory and play animation
+                    _playerMover.addObject(_savedPosition, "wood"); // add aquacell back to map
                 }
 
             }

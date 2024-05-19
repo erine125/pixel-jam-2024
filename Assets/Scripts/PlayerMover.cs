@@ -60,8 +60,8 @@ namespace CommandPattern
 
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
 
-            // update sprite
-            UpdateSpriteDirection(gridMovement);
+            // update sprite. since Move is called in Undo, update the sprite in reverse
+            UpdateSpriteDirection(-gridMovement);
 
             // move player position
             transform.position = targetPosition;
@@ -101,7 +101,6 @@ namespace CommandPattern
 
             if (tileAtCell == woodTile)
             {
-                Debug.Log("Found Wood");
                 return "wood";
             } else if (tileAtCell == oilcanTile)
             {

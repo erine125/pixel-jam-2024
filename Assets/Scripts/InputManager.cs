@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Linq;
+using UnityEngine.Tilemaps;
 
 namespace CommandPattern
 {
@@ -22,6 +25,9 @@ namespace CommandPattern
         public AudioClip moveSFX;
         public AudioClip cantMoveSFX;
 
+        public Grid grid;
+        public Tilemap ditchTilemap; 
+
         //private void Start()
         //{
 
@@ -31,7 +37,19 @@ namespace CommandPattern
         {
 
             CheckKeyboardInput();
+            CheckMouseInput();
 
+        }
+
+        private void CheckMouseInput()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3Int clickedCell = ditchTilemap.WorldToCell(position); // get the cell that player clicked on 
+                //RunDamCommand(player, gameState, clickedCell);
+
+            }
         }
 
         private void CheckKeyboardInput()
@@ -77,6 +95,39 @@ namespace CommandPattern
             }
 
         }
+
+        // create a function that invokes the build/break commands
+
+        //private void RunDamCommand(PlayerMover playerMover, GameState gameState, Vector3Int clickedCell)
+        //{
+        //    Vector3Int playerCell = tilemap.WorldToCell(player.transform.position); // get cell that player is standing in 
+
+        //    // first, check if player is adjacent to the position. if not, do nothing.
+        //    if (Math.Abs(clickedCell.x - playerCell.x) <= 1 && Math.Abs(clickedCell.y - playerCell.y) <= 1)
+        //    {
+
+        //        // TODO: check if the item they clicked on is in the Dam tilemap. If so, call BreakDamCommand.
+
+        //        // otherwise, check if the item they clicked on is in the Ditch tilemap and is NOT in the water tilemap.
+
+        //    }
+
+
+        //        // TODO: Check if there is a dam tile at the clicked cell. if so, call the BREAKDAM command.
+
+        //        // only place if: player has wood, player is adjacent to position, position is a ditch position
+        //        if (Math.Abs(clickedCell.x - playerCell.x) <= 1 && Math.Abs(clickedCell.y - playerCell.y) <= 1) // check if adjacent to player cell position
+        //    {
+        //        Tile tileAtClickedCell = ditchTilemap.GetTile(clickedCell) as Tile; // get tile from ditch, cast to Tile object 
+        //        if (ditchTilemap.HasTile(tileAtClickedCell)) // check if the tile we're trying to build on is a ditch tile (not ground or water)
+        //        {
+        //            if (gameState.woodCount > 0) // check if player has wood
+        //            {
+
+        //            }
+        //        }
+        //    }
+        //}
 
 
 

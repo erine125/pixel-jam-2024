@@ -82,13 +82,13 @@ namespace CommandPattern
         public void IncrementWood()
         {
             woodCount++;
-            // TODO: update UI
+            _UIManager.AddWoodUI(woodCount);
         }
 
         public void DecrementWood()
         {
             woodCount--;
-            // TODO: update UI
+            _UIManager.RemoveWoodUI(woodCount);
         }
 
         public void IncrementAquacells()
