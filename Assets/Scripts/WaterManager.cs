@@ -53,7 +53,6 @@ namespace CommandPattern
                     {
                         if (!waterTilemap.HasTile(neighbor))
                         {
-                            Debug.Log(neighbor.ToString());
                             waterTilemap.SetTile(neighbor, waterTile); // set water tile
                             queue.Enqueue(neighbor);
                         }

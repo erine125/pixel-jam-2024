@@ -19,6 +19,7 @@ namespace CommandPattern
         public Tilemap shadowTiles;
         public Tilemap damTiles;
         public Tilemap ditchTiles;
+        public Tilemap waterTiles;
 
         public Tile oilcanTile;
         public Tile woodTile;
@@ -40,6 +41,29 @@ namespace CommandPattern
         public Sprite leftSprite;
         public Sprite rightSprite;
         public SpriteRenderer spriteRenderer; // note that this sprite renderer is the one on the CHILD object 
+
+
+
+        void OnDrawGizmos()
+        {
+            if (waterTiles == null)
+                return;
+
+            BoundsInt bounds = waterTiles.cellBounds;
+            Gizmos.color = Color.green;
+
+            // Draw a line around the perimeter of the cell bounds
+            Vector3 min = waterTiles.CellToWorld(new Vector3Int(bounds.xMin, bounds.yMin, bounds.zMin));
+            Vector3 max = waterTiles.CellToWorld(new Vector3Int(bounds.xMax, bounds.yMax, bounds.zMax));
+
+            // Draw the bottom rectangle
+            Gizmos.DrawLine(new Vector3(min.x, min.y, 0), new Vector3(max.x, min.y, 0));
+            Gizmos.DrawLine(new Vector3(min.x, min.y, 0), new Vector3(min.x, max.y, 0));
+            Gizmos.DrawLine(new Vector3(max.x, min.y, 0), new Vector3(max.x, max.y, 0));
+            Gizmos.DrawLine(new Vector3(min.x, max.y, 0), new Vector3(max.x, max.y, 0));
+
+
+        }
 
         private void Start()
         {
