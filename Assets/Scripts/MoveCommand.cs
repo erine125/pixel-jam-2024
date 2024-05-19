@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace CommandPattern
 {
-
-     
     // an example of a simple command object, implementing ICommand
     public class MoveCommand : ICommand
     {

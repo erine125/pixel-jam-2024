@@ -16,13 +16,16 @@ namespace CommandPattern
         public Tilemap walkableTiles;
         public Tilemap pickupTiles;
         public Tilemap winTiles;
-        public Tilemap shadowTiles; 
+        public Tilemap shadowTiles;
+        public Tilemap damTiles;
+        public Tilemap ditchTiles;
 
         public Tile oilcanTile;
         public Tile woodTile;
         public Tile aquacellTile;
         public Tile floorTile;
         public Tile shadowTile;
+        public Tile damTile;
 
         public float moveSpeed = 8f;
 
