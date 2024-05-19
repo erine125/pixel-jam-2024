@@ -41,6 +41,8 @@ namespace CommandPattern
                 _waterManager.FloodFillWater(_position);
             }
 
+            _waterManager.ActivateDriftwood();
+
         }
 
 
@@ -54,6 +56,7 @@ namespace CommandPattern
             _playerMover.walkableTiles.SetTile(_position, _playerMover.damTile);
 
             RevertWaterState();
+            _waterManager.DeactivateDriftwood();
 
         }
 
@@ -67,6 +70,8 @@ namespace CommandPattern
                     Vector3Int pos = new Vector3Int(x, y, 0);
                     Tile tile = _playerMover.waterTiles.GetTile(pos) as Tile;
                     savedWaterState[pos] = tile;
+
+                    
                 }
             }
         }
@@ -77,6 +82,7 @@ namespace CommandPattern
             {
                 _playerMover.waterTiles.SetTile(pos, savedWaterState[pos]);
             }
+            
         }
 
         

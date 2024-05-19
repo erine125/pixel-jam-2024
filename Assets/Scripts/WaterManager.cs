@@ -11,12 +11,31 @@ namespace CommandPattern
         public Tilemap ditchTilemap;
         public Tilemap damTilemap;
         public Tilemap waterTilemap;
+        public Tilemap driftwoodTilemap;
+        public Tilemap walkableTilemap;
 
         public Tile waterTile;
+        public Tile ActivatedDriftwoodTile;
+        public Tile DeactivatedDriftwoodTile;
+
+        private List<Vector3Int> driftwoodPositions = new List<Vector3Int>(); // list of driftwood positions
 
         private void Start()
-
         {
+            // get and save list of driftwood positions
+            BoundsInt bounds = driftwoodTilemap.cellBounds;
+            for (int x = bounds.xMin; x <= bounds.xMax; x++)
+            {
+                for (int y = bounds.yMin; y <= bounds.yMax; y++)
+                {
+                    Vector3Int pos = new Vector3Int(x, y, 0);
+                    if (driftwoodTilemap.GetTile(pos) != null)
+                    {
+                        driftwoodPositions.Add(pos);
+                        Debug.Log(pos);
+                    }
+                }
+            }
 
 
         }
@@ -76,6 +95,36 @@ namespace CommandPattern
                 }
             }
             return null; // Return null if the tile is not found
+        }
+
+        public void ActivateDriftwood()
+        {
+            foreach (Vector3Int pos in driftwoodPositions)
+            {
+                if (waterTilemap.HasTile(pos))
+                {
+                    Debug.Log("Activating driftwood at: " + pos);
+
+                    // activate the driftwood by placing the right cosmetic tile on the driftwood map 
+                    driftwoodTilemap.SetTile(pos, ActivatedDriftwoodTile);
+
+                    // make driftwood walkable by placing a tile on walkable tilemap 
+                    walkableTilemap.SetTile(pos, ActivatedDriftwoodTile);
+                }
+            }
+        }
+
+        public void DeactivateDriftwood()
+        {
+            foreach (Vector3Int pos in driftwoodPositions)
+            {
+                // deactivate the driftwood by placing the right cosmetic tile on the driftwood map 
+                driftwoodTilemap.SetTile(pos, DeactivatedDriftwoodTile);
+
+                // make driftwood not walkable by removing a tile on walkable tilemap 
+                walkableTilemap.SetTile(pos, null);
+                
+            }
         }
 
 
