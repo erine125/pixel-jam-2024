@@ -10,3 +10,7 @@ LAYERING from TOP to BOTTOM:
 - below-walkable
 - bg
 - water tilemap for the whole map
+
+
+uses ditch-custom 2, 3, and 4
+uses corner-dot-3
