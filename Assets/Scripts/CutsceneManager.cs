@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ImageSequenceController : MonoBehaviour
 {
-    public CanvasGroup[] images; // Assign your images with CanvasGroup in the inspector
+    public CanvasGroup[] images; // 
+    public AudioClip[] sfx; // list of SFX to play with each scene
+    public AudioSource audiosource;
     public float fadeDuration = 1.0f; // Duration of the fade effect
     private int currentIndex = 0; // Track the current image index
+
+
 
     private void Start()
     {
@@ -30,13 +34,33 @@ public class ImageSequenceController : MonoBehaviour
         {
             if (currentIndex < images.Length - 1) // Check if there are more images to show
             {
+                if (sfx[currentIndex] != null)
+                {
+                    audiosource.PlayOneShot(sfx[currentIndex], 0.4f);
+                }
+
                 StartCoroutine(FadeImage(currentIndex, currentIndex + 1));
                 currentIndex++;
             } else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                GoToNextScene();
             }
         }
+    }
+
+    public void GoToNextScene()
+    {
+        // Get the current scene's build index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        // Get the total number of scenes in the build settings
+        int totalScenes = SceneManager.sceneCountInBuildSettings;
+
+        // Calculate the next scene index
+        // If the current scene is the last one, cycle back to the first scene (index 0)
+        int nextSceneIndex = (currentSceneIndex + 1) % totalScenes;
+
+        // Load the next scene
+        SceneManager.LoadScene(nextSceneIndex);
     }
 
     private IEnumerator FadeImage(int fromIndex, int toIndex)
