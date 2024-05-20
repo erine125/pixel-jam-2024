@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -6686,6 +6686,8 @@ MonoBehaviour:
   oilcanPickup: {fileID: 8300000, guid: 9ac9153ea51c41b4a81d555061282ad0, type: 3}
   woodPickup: {fileID: 8300000, guid: 51cad1515ef513d4ba3f0ddb0fab80c4, type: 3}
   aquacellPickup: {fileID: 8300000, guid: eca455bee9e7e0548b40be8ffec8a7da, type: 3}
+  breakDamSFX: {fileID: 0}
+  buildDamSFX: {fileID: 0}
 --- !u!82 &1141103172
 AudioSource:
   m_ObjectHideFlags: 0

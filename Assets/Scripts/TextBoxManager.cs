@@ -32,11 +32,7 @@ public class TextboxManager : MonoBehaviour
             Button btn = textboxes[currentTextboxIndex].GetComponent<Button>();
             btn.onClick.AddListener(OnTextboxClicked);
         }
-        else
-        {
-            // All textboxes have been shown, allow access to the level
-            gameObject.SetActive(false); // Optionally disable the manager or the UI container
-        }
+      
     }
 
     void OnTextboxClicked()

@@ -249,10 +249,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -2173,7 +2173,7 @@ Tilemap:
       - {fileID: 974345624, guid: e93978e52883ebc4488857c223c4cf79, type: 3}
       - {fileID: 1814642497, guid: d4af933eb0ed90646869732529a87361, type: 3}
       - {fileID: 1147062847, guid: 0dd0cb0e868c6764486fd2d2c465f995, type: 3}
-      m_AnimationSpeed: 2.542104
+      m_AnimationSpeed: 2.3558195
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
