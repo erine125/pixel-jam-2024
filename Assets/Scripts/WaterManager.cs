@@ -20,8 +20,13 @@ namespace CommandPattern
 
         private List<Vector3Int> driftwoodPositions = new List<Vector3Int>(); // list of driftwood positions
 
-        public AnimatedTile[] flowAnimations; // Array of flow animations
-        public AnimatedTile[] idleAnimations; // Array of idle animations
+        public Tile[] unactivatedDriftwoodTiles;
+        public Tile[] activatedDriftwoodTiles;
+        private Dictionary<Tile, Tile> driftwoodMapping = new Dictionary<Tile, Tile>();
+        private Dictionary<Tile, Tile> inverseDriftwoodMapping = new Dictionary<Tile, Tile>();
+
+        public AnimatedTile[] flowAnimations; 
+        public AnimatedTile[] idleAnimations; 
         public Tile[] ditchTiles; // Array of ditch tiles corresponding by index
 
         // dictionaries that map ditch tiles onto corresponding animated tiles 
@@ -50,6 +55,14 @@ namespace CommandPattern
             {
                 flowMapping.Add(ditchTiles[i], flowAnimations[i]);
                 idleMapping.Add(ditchTiles[i], idleAnimations[i]);
+            }
+
+            // initialize driftwood inactive to active tile mappings 
+
+            for (int i = 0; i < unactivatedDriftwoodTiles.Length; i++)
+            {
+                driftwoodMapping.Add(unactivatedDriftwoodTiles[i], activatedDriftwoodTiles[i]);
+                inverseDriftwoodMapping.Add(activatedDriftwoodTiles[i], unactivatedDriftwoodTiles[i]);
             }
 
         }
@@ -169,13 +182,17 @@ namespace CommandPattern
             {
                 if (waterTilemap.HasTile(pos))
                 {
-                    Debug.Log("Activating driftwood at: " + pos);
+                    // get deactivated driftwood sprite
+                    Tile deactivatedSprite = driftwoodTilemap.GetTile(pos) as Tile;
+
+                    // get the corresponding active tile sprite from the dictionary 
+                    Tile activatedSprite = driftwoodMapping[deactivatedSprite];
 
                     // activate the driftwood by placing the right cosmetic tile on the driftwood map 
-                    driftwoodTilemap.SetTile(pos, ActivatedDriftwoodTile);
+                    driftwoodTilemap.SetTile(pos, activatedSprite);
 
                     // make driftwood walkable by placing a tile on walkable tilemap 
-                    walkableTilemap.SetTile(pos, ActivatedDriftwoodTile);
+                    walkableTilemap.SetTile(pos, activatedSprite);
                 }
             }
         }
@@ -184,11 +201,22 @@ namespace CommandPattern
         {
             foreach (Vector3Int pos in driftwoodPositions)
             {
-                // deactivate the driftwood by placing the right cosmetic tile on the driftwood map 
-                driftwoodTilemap.SetTile(pos, DeactivatedDriftwoodTile);
 
-                // make driftwood not walkable by removing a tile on walkable tilemap 
-                walkableTilemap.SetTile(pos, null);
+                if (!waterTilemap.HasTile(pos)) {
+
+                    // get activated driftwood sprite
+                    Tile activatedSprite = driftwoodTilemap.GetTile(pos) as Tile;
+
+                    // get deactivated sprite from inverse dictionary 
+                    Tile deactivatedSprite = inverseDriftwoodMapping[activatedSprite];
+
+                    // deactivate the driftwood by placing the right cosmetic tile on the driftwood map 
+                    driftwoodTilemap.SetTile(pos, deactivatedSprite);
+
+                    // make driftwood not walkable by removing a tile on walkable tilemap 
+                    walkableTilemap.SetTile(pos, null);
+
+                }
                 
             }
         }
