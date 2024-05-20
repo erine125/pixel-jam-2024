@@ -6452,6 +6452,7 @@ MonoBehaviour:
   audiosource: {fileID: 1141103172}
   moveSFX: {fileID: 8300000, guid: e0dfccb6876a00d439f175f6c2485b4f, type: 3}
   cantMoveSFX: {fileID: 8300000, guid: 3add1cd7999183f4597343f73e15501a, type: 3}
+  continuousMoveSFX: {fileID: 0}
   upSprite: {fileID: 21300000, guid: 65d34d2021eaa7644adfdf7445206ea6, type: 3}
   downSprite: {fileID: 21300000, guid: baa8ebfa2b8489440b380138f5c8edf4, type: 3}
   leftSprite: {fileID: 21300000, guid: 85b2fb528d5104048b8b0953d69bb343, type: 3}
@@ -6508,6 +6509,10 @@ MonoBehaviour:
   - {fileID: 412282849}
   - {fileID: 1830322066}
   _UIManager: {fileID: 62493523}
+  audiosource: {fileID: 0}
+  oilcanPickup: {fileID: 0}
+  woodPickup: {fileID: 0}
+  aquacellPickup: {fileID: 0}
 --- !u!82 &1141103172
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9901,7 +9906,7 @@ Animator:
   m_GameObject: {fileID: 1654345071}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d5cda527dad4d714ba94658e122af2a6, type: 2}
+  m_Controller: {fileID: 9100000, guid: f93e3a45e5502774cbca5e598f356669, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -15311,7 +15316,7 @@ Animator:
   m_GameObject: {fileID: 2046832068}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6d022e762c58ddb49b0d9fae1c55cc2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: d70e4e2d95937804b86b7a62c22aedfe, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

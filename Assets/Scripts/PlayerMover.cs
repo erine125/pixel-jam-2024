@@ -34,6 +34,7 @@ namespace CommandPattern
         public AudioSource audiosource;
         public AudioClip moveSFX;
         public AudioClip cantMoveSFX;
+        public AudioClip continuousMoveSFX; 
 
         /* sprites */
         public Sprite upSprite;
@@ -102,6 +103,7 @@ namespace CommandPattern
 
                 Debug.Log("Win!");
                 Vector3Int finalMovement = new Vector3Int(5, 0, 0);
+                audiosource.PlayOneShot(continuousMoveSFX, 0.4f);
                 StartCoroutine(MoveToPosition(finalMovement, LoadNextScene));
                 
             }

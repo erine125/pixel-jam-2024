@@ -1691,7 +1691,7 @@ Tilemap:
       - {fileID: 974345624, guid: e93978e52883ebc4488857c223c4cf79, type: 3}
       - {fileID: 1814642497, guid: d4af933eb0ed90646869732529a87361, type: 3}
       - {fileID: 1147062847, guid: 0dd0cb0e868c6764486fd2d2c465f995, type: 3}
-      m_AnimationSpeed: 3.7117558
+      m_AnimationSpeed: 2.3028128
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -5018,10 +5018,11 @@ MonoBehaviour:
   floorTile: {fileID: 11400000, guid: 8ce1f18ddc9be9b428bb10b85190f88d, type: 2}
   shadowTile: {fileID: 11400000, guid: c9fa7bfa59c96aa4bb9cbfb8c092ca9b, type: 2}
   damTile: {fileID: 11400000, guid: 13075024900063c46a081b51bd2c78eb, type: 2}
-  moveSpeed: 5
+  moveSpeed: 8
   audiosource: {fileID: 1141103172}
   moveSFX: {fileID: 8300000, guid: e0dfccb6876a00d439f175f6c2485b4f, type: 3}
   cantMoveSFX: {fileID: 8300000, guid: 3add1cd7999183f4597343f73e15501a, type: 3}
+  continuousMoveSFX: {fileID: 0}
   upSprite: {fileID: 21300000, guid: 65d34d2021eaa7644adfdf7445206ea6, type: 3}
   downSprite: {fileID: 21300000, guid: baa8ebfa2b8489440b380138f5c8edf4, type: 3}
   leftSprite: {fileID: 21300000, guid: 85b2fb528d5104048b8b0953d69bb343, type: 3}
@@ -5076,6 +5077,10 @@ MonoBehaviour:
   - {fileID: 1382313242}
   - {fileID: 1934394499}
   _UIManager: {fileID: 62493523}
+  audiosource: {fileID: 0}
+  oilcanPickup: {fileID: 0}
+  woodPickup: {fileID: 0}
+  aquacellPickup: {fileID: 0}
 --- !u!82 &1141103172
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12430,7 +12435,7 @@ Animator:
   m_GameObject: {fileID: 2046832068}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6d022e762c58ddb49b0d9fae1c55cc2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9e54753111e22ac4fbbac172a1e33a90, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

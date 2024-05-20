@@ -24,6 +24,14 @@ namespace CommandPattern
 
         public UIManager _UIManager;
 
+        /* audio */
+        public AudioSource audiosource;
+        //pickup sound effects
+        public AudioClip oilcanPickup;
+        public AudioClip woodPickup;
+        public AudioClip aquacellPickup; 
+
+
         public void Start()
         {
             // initialize steps remaining
@@ -63,6 +71,8 @@ namespace CommandPattern
         // replenish steps back to max.
         // return the # of steps remaining before replenishing, so it can be saved
         {
+
+            audiosource.PlayOneShot(oilcanPickup, 0.42f);
             int savedSteps = stepsRemaining;
             if (stepsRemaining < maxSteps)
             {
@@ -81,6 +91,7 @@ namespace CommandPattern
 
         public void IncrementWood()
         {
+            audiosource.PlayOneShot(woodPickup, 0.3f);
             woodCount++;
             _UIManager.AddWoodUI(woodCount);
         }
@@ -93,6 +104,7 @@ namespace CommandPattern
 
         public void IncrementAquacells()
         {
+            audiosource.PlayOneShot(aquacellPickup, 0.3f);
             aquacellCount++;
             pedestalAnimators[aquacellCount - 1].Play("Pedestal_LightUp"); // light up next pedestal
 

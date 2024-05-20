@@ -156,7 +156,7 @@ namespace CommandPattern
                     else
                     {
                         // play sfx indicating can't move
-                        _audiosource.PlayOneShot(playerMover.cantMoveSFX, 0.8f);
+                        _audiosource.PlayOneShot(playerMover.cantMoveSFX, 0.3f);
                     }
 
 

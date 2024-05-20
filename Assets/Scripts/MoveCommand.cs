@@ -29,7 +29,7 @@ namespace CommandPattern
         public void Execute()
         {
             // play sound effect 
-            _audiosource.PlayOneShot(_playerMover.moveSFX, 0.8f);
+            _audiosource.PlayOneShot(_playerMover.moveSFX, 0.3f);
 
             // start movement animation coroutine 
             _playerMover.StartCoroutine(_playerMover.MoveToPosition(_movement)); 
