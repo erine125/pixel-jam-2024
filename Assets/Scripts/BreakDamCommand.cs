@@ -12,7 +12,7 @@ namespace CommandPattern
         private Vector3Int _position;
         private WaterManager _waterManager;
 
-        private Dictionary<Vector3Int, Tile> savedWaterState = new Dictionary<Vector3Int, Tile>();
+        private Dictionary<Vector3Int, AnimatedTile> savedWaterState = new Dictionary<Vector3Int, AnimatedTile>();
 
         // pass parameters into the constructor
         public BreakDamCommand(PlayerMover player, GameState gameState, WaterManager waterManager, Vector3Int position)
@@ -68,7 +68,7 @@ namespace CommandPattern
                 for (int y = bounds.yMin; y < bounds.yMax; y++)
                 {
                     Vector3Int pos = new Vector3Int(x, y, 0);
-                    Tile tile = _playerMover.waterTiles.GetTile(pos) as Tile;
+                    AnimatedTile tile = _playerMover.waterTiles.GetTile(pos) as AnimatedTile;
                     savedWaterState[pos] = tile;
 
                     
@@ -84,5 +84,7 @@ namespace CommandPattern
             }
             
         }
+
+        
     }
     }

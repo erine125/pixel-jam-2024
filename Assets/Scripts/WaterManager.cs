@@ -90,6 +90,7 @@ namespace CommandPattern
                         {
 
                             AnimatedTile idleAnimation = idleMapping[ditchTile];
+                            //AnimatedTile flowAnimation = flowMapping[ditchTile];
                             waterTilemap.SetTile(neighbor, idleAnimation); // Set flow animation tile
                             //waterTilemap.SetTile(neighbor, waterTile); // set water tile
 
@@ -101,6 +102,49 @@ namespace CommandPattern
                 }
             }
         }
+
+        //public IEnumerator FloodFillWater(Vector3Int start)
+        //{
+        //    Queue<Vector3Int> queue = new Queue<Vector3Int>();
+        //    queue.Enqueue(start);
+        //    float delay = 0f;
+
+        //    while (queue.Count > 0)
+        //    {
+        //        Vector3Int current = queue.Dequeue();
+
+        //        // Check if the current tile is ready for animation (not already animated)
+        //        if (!waterTilemap.HasTile(current))
+        //        {
+        //            yield return new WaitForSeconds(delay); // Wait for the previous animation to complete
+
+        //            foreach (Vector3Int dir in new Vector3Int[] { Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right })
+        //            {
+        //                Vector3Int neighbor = current + dir;
+
+        //                if (!damTilemap.HasTile(neighbor) && ditchTilemap.HasTile(neighbor))
+        //                {
+        //                    Tile ditchTile = ditchTilemap.GetTile(neighbor) as Tile;
+        //                    if (!waterTilemap.HasTile(neighbor) && flowMapping.ContainsKey(ditchTile))
+        //                    {
+        //                        AnimatedTile flowAnimation = flowMapping[ditchTile];
+        //                        AnimatedTile idleAnimation = idleMapping[ditchTile];
+
+        //                        waterTilemap.SetTile(neighbor, flowAnimation); // Set flow animation tile
+        //                        StartCoroutine(SwitchToIdleAnimation(neighbor, flowAnimation, idleAnimation));
+
+        //                        // Enqueue the neighbor for the next wave of animation
+        //                        queue.Enqueue(neighbor);
+
+        //                        // Set delay for the next tile's animation based on the length of the current animation
+        //                        delay = 1f;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
 
         public Vector3Int? FindTilePosition(Tilemap tilemap, Tile targetTile)
         {
@@ -149,11 +193,11 @@ namespace CommandPattern
             }
         }
 
-        IEnumerator SwitchToIdleAnimation(Vector3Int tilePos, AnimatedTile flowAnimation, AnimatedTile idleAnimation)
-        {
-            yield return new WaitForSeconds(flowAnimation.m_MaxSpeed * flowAnimation.m_AnimatedSprites.Length);
-            waterTilemap.SetTile(tilePos, idleAnimation);
-        }
+        //IEnumerator SwitchToIdleAnimation(Vector3Int tilePos, AnimatedTile flowAnimation, AnimatedTile idleAnimation)
+        //{
+        //    yield return new WaitForSeconds(1);
+        //    waterTilemap.SetTile(tilePos, idleAnimation);
+        //}
 
     }
 }
