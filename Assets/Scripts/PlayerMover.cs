@@ -101,7 +101,7 @@ namespace CommandPattern
             if (winTiles.HasTile(targetCell)){
 
                 Debug.Log("Win!");
-                Vector3Int finalMovement = new Vector3Int(3, 0, 0);
+                Vector3Int finalMovement = new Vector3Int(5, 0, 0);
                 StartCoroutine(MoveToPosition(finalMovement, LoadNextScene));
                 
             }
