@@ -207,8 +207,12 @@ namespace CommandPattern
                     // get activated driftwood sprite
                     Tile activatedSprite = driftwoodTilemap.GetTile(pos) as Tile;
 
+                    Tile deactivatedSprite = null;
+
                     // get deactivated sprite from inverse dictionary 
-                    Tile deactivatedSprite = inverseDriftwoodMapping[activatedSprite];
+                    if (inverseDriftwoodMapping.ContainsKey(activatedSprite)) {
+                        deactivatedSprite = inverseDriftwoodMapping[activatedSprite];
+                    }
 
                     // deactivate the driftwood by placing the right cosmetic tile on the driftwood map 
                     driftwoodTilemap.SetTile(pos, deactivatedSprite);
