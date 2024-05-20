@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: fillAnim4
   m_EditorClassIdentifier: 
   m_AnimatedSprites:
-  - {fileID: 1620777866, guid: ba56187d438ccbd4eb09dba86aaf1c33, type: 3}
-  - {fileID: -1393359623, guid: ba56187d438ccbd4eb09dba86aaf1c33, type: 3}
-  - {fileID: -1158370165, guid: ba56187d438ccbd4eb09dba86aaf1c33, type: 3}
-  - {fileID: -590293213, guid: ba56187d438ccbd4eb09dba86aaf1c33, type: 3}
+  - {fileID: 1664991650, guid: 3849856015e62a44d842b945f6f26e45, type: 3}
+  - {fileID: -1790122556, guid: 3849856015e62a44d842b945f6f26e45, type: 3}
+  - {fileID: 1151514356, guid: 3849856015e62a44d842b945f6f26e45, type: 3}
+  - {fileID: 272963479, guid: 3849856015e62a44d842b945f6f26e45, type: 3}
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0

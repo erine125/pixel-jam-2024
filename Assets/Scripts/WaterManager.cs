@@ -81,7 +81,6 @@ namespace CommandPattern
                 {
                     Vector3Int neighbor = current + dir;
 
-
                     if (!damTilemap.HasTile(neighbor) && ditchTilemap.HasTile(neighbor))
                     {
 
@@ -89,11 +88,14 @@ namespace CommandPattern
 
                         if (!waterTilemap.HasTile(neighbor))
                         {
-                            AnimatedTile flowAnimation = flowMapping[ditchTile];
-                            AnimatedTile idleAnimation = idleMapping[ditchTile];
 
-                            waterTilemap.SetTile(neighbor, flowAnimation); // Set flow animation tile
-                            StartCoroutine(SwitchToIdleAnimation(neighbor, flowAnimation, idleAnimation));
+                            AnimatedTile idleAnimation = idleMapping[ditchTile];
+                            waterTilemap.SetTile(neighbor, idleAnimation); // Set flow animation tile
+                            //waterTilemap.SetTile(neighbor, waterTile); // set water tile
+
+                            //StartCoroutine(SwitchToIdleAnimation(neighbor, flowAnimation, idleAnimation));
+
+                            queue.Enqueue(neighbor);
                         }
                     }
                 }

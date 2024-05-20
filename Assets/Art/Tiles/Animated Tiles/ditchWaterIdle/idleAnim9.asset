@@ -10,13 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
-  m_Name: fillAnim9
+  m_Name: idleAnim9
   m_EditorClassIdentifier: 
-  m_AnimatedSprites:
-  - {fileID: -1901839370, guid: ac4969d3cd0083842ada10a68e9e42fd, type: 3}
-  - {fileID: 1048850888, guid: ac4969d3cd0083842ada10a68e9e42fd, type: 3}
-  - {fileID: -1614708534, guid: ac4969d3cd0083842ada10a68e9e42fd, type: 3}
-  - {fileID: 420068956, guid: ac4969d3cd0083842ada10a68e9e42fd, type: 3}
+  m_AnimatedSprites: []
   m_MinSpeed: 1
   m_MaxSpeed: 1
   m_AnimationStartTime: 0
