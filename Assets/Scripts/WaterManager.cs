@@ -20,6 +20,16 @@ namespace CommandPattern
 
         private List<Vector3Int> driftwoodPositions = new List<Vector3Int>(); // list of driftwood positions
 
+
+
+        public AnimatedTile[] flowAnimations; // Array of flow animations
+        public AnimatedTile[] idleAnimations; // Array of idle animations
+        public Tile[] ditchTiles; // Array of ditch tiles corresponding by index
+
+        // dictionaries that map ditch tiles onto corresponding animated tiles 
+        private Dictionary<Tile, AnimatedTile> flowMapping = new Dictionary<Tile, AnimatedTile>();
+        private Dictionary<Tile, AnimatedTile> idleMapping = new Dictionary<Tile, AnimatedTile>();
+
         private void Start()
         {
             // get and save list of driftwood positions
@@ -126,6 +136,9 @@ namespace CommandPattern
                 
             }
         }
+
+
+
 
 
     }

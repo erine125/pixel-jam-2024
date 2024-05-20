@@ -84,7 +84,5 @@ namespace CommandPattern
             }
             
         }
-
-        
     }
     }

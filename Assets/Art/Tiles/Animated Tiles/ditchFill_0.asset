@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: ditchFill_0
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 220589100, guid: 3e5eafc4c6cdda944ae00f53b7de13b8, type: 3}
+  - {fileID: 974345624, guid: e93978e52883ebc4488857c223c4cf79, type: 3}
+  - {fileID: 1814642497, guid: d4af933eb0ed90646869732529a87361, type: 3}
+  - {fileID: 1147062847, guid: 0dd0cb0e868c6764486fd2d2c465f995, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
