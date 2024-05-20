@@ -20,8 +20,6 @@ namespace CommandPattern
 
         private List<Vector3Int> driftwoodPositions = new List<Vector3Int>(); // list of driftwood positions
 
-
-
         public AnimatedTile[] flowAnimations; // Array of flow animations
         public AnimatedTile[] idleAnimations; // Array of idle animations
         public Tile[] ditchTiles; // Array of ditch tiles corresponding by index
@@ -47,6 +45,12 @@ namespace CommandPattern
                 }
             }
 
+            // initialize tile to animation mappings 
+            for (int i = 0; i < ditchTiles.Length; i++)
+            {
+                flowMapping.Add(ditchTiles[i], flowAnimations[i]);
+                idleMapping.Add(ditchTiles[i], idleAnimations[i]);
+            }
 
         }
 
@@ -80,10 +84,16 @@ namespace CommandPattern
 
                     if (!damTilemap.HasTile(neighbor) && ditchTilemap.HasTile(neighbor))
                     {
+
+                        Tile ditchTile = ditchTilemap.GetTile(neighbor) as Tile;
+
                         if (!waterTilemap.HasTile(neighbor))
                         {
-                            waterTilemap.SetTile(neighbor, waterTile); // set water tile
-                            queue.Enqueue(neighbor);
+                            AnimatedTile flowAnimation = flowMapping[ditchTile];
+                            AnimatedTile idleAnimation = idleMapping[ditchTile];
+
+                            waterTilemap.SetTile(neighbor, flowAnimation); // Set flow animation tile
+                            StartCoroutine(SwitchToIdleAnimation(neighbor, flowAnimation, idleAnimation));
                         }
                     }
                 }
@@ -137,9 +147,11 @@ namespace CommandPattern
             }
         }
 
-
-
-
+        IEnumerator SwitchToIdleAnimation(Vector3Int tilePos, AnimatedTile flowAnimation, AnimatedTile idleAnimation)
+        {
+            yield return new WaitForSeconds(flowAnimation.m_MaxSpeed * flowAnimation.m_AnimatedSprites.Length);
+            waterTilemap.SetTile(tilePos, idleAnimation);
+        }
 
     }
 }

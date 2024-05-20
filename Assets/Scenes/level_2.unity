@@ -1211,6 +1211,9 @@ MonoBehaviour:
   waterTile: {fileID: 11400000, guid: 8a8e67c276c1d694789fbc52d2c46379, type: 2}
   ActivatedDriftwoodTile: {fileID: 11400000, guid: 44f2cc8b89f4de54f97c273477476b53, type: 2}
   DeactivatedDriftwoodTile: {fileID: 11400000, guid: 0ac50a3856d619944ae0c103fe5c5e6a, type: 2}
+  flowAnimations: []
+  idleAnimations: []
+  ditchTiles: []
 --- !u!1 &675708592
 GameObject:
   m_ObjectHideFlags: 0
