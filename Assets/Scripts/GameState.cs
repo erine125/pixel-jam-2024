@@ -29,7 +29,10 @@ namespace CommandPattern
         //pickup sound effects
         public AudioClip oilcanPickup;
         public AudioClip woodPickup;
-        public AudioClip aquacellPickup; 
+        public AudioClip aquacellPickup;
+
+        public AudioClip breakDamSFX;
+        public AudioClip buildDamSFX;
 
 
         public void Start()
@@ -91,7 +94,7 @@ namespace CommandPattern
 
         public void IncrementWood()
         {
-            audiosource.PlayOneShot(woodPickup, 0.3f);
+            audiosource.PlayOneShot(woodPickup, 0.2f);
             woodCount++;
             _UIManager.AddWoodUI(woodCount);
         }

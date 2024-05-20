@@ -26,6 +26,9 @@ namespace CommandPattern
             // decrement wood count 
             _gameState.DecrementWood();
 
+            // play sfx 
+            _gameState.audiosource.PlayOneShot(_gameState.buildDamSFX, 0.2f);
+
             // create the dam object 
             _playerMover.damTiles.SetTile(_position, _playerMover.damTile);
 

@@ -6731,9 +6731,9 @@ MonoBehaviour:
   damTile: {fileID: 11400000, guid: 13075024900063c46a081b51bd2c78eb, type: 2}
   moveSpeed: 8
   audiosource: {fileID: 1141103172}
-  moveSFX: {fileID: 8300000, guid: e0dfccb6876a00d439f175f6c2485b4f, type: 3}
-  cantMoveSFX: {fileID: 8300000, guid: 3add1cd7999183f4597343f73e15501a, type: 3}
-  continuousMoveSFX: {fileID: 0}
+  moveSFX: {fileID: 8300000, guid: c3289eb12e1f406498732846ea718f35, type: 3}
+  cantMoveSFX: {fileID: 8300000, guid: 98f570af061f9474b8990148d1b5409b, type: 3}
+  continuousMoveSFX: {fileID: 8300000, guid: cb86191dbad037e41a102ac2ed7157cf, type: 3}
   upSprite: {fileID: 21300000, guid: 65d34d2021eaa7644adfdf7445206ea6, type: 3}
   downSprite: {fileID: 21300000, guid: baa8ebfa2b8489440b380138f5c8edf4, type: 3}
   leftSprite: {fileID: 21300000, guid: 85b2fb528d5104048b8b0953d69bb343, type: 3}
@@ -6760,7 +6760,7 @@ MonoBehaviour:
   undoKey: 101
   resetKey: 114
   _audiosource: {fileID: 1141103172}
-  moveSFX: {fileID: 8300000, guid: 1a98c24ee500a7c4d9d1bf489f75ca02, type: 3}
+  moveSFX: {fileID: 8300000, guid: c3289eb12e1f406498732846ea718f35, type: 3}
   cantMoveSFX: {fileID: 8300000, guid: 98f570af061f9474b8990148d1b5409b, type: 3}
   grid: {fileID: 1200474714}
   ditchTilemap: {fileID: 675708595}
@@ -6790,10 +6790,12 @@ MonoBehaviour:
   - {fileID: 412282849}
   - {fileID: 1467571212}
   _UIManager: {fileID: 62493523}
-  audiosource: {fileID: 0}
-  oilcanPickup: {fileID: 0}
-  woodPickup: {fileID: 0}
-  aquacellPickup: {fileID: 0}
+  audiosource: {fileID: 1141103172}
+  oilcanPickup: {fileID: 8300000, guid: 9ac9153ea51c41b4a81d555061282ad0, type: 3}
+  woodPickup: {fileID: 8300000, guid: 51cad1515ef513d4ba3f0ddb0fab80c4, type: 3}
+  aquacellPickup: {fileID: 8300000, guid: eca455bee9e7e0548b40be8ffec8a7da, type: 3}
+  breakDamSFX: {fileID: 8300000, guid: 7b782f2db8502ef429035f0e84cf4e56, type: 3}
+  buildDamSFX: {fileID: 8300000, guid: 4ab351d0166db5b418eae3b48656c893, type: 3}
 --- !u!82 &1141103172
 AudioSource:
   m_ObjectHideFlags: 0

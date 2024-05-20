@@ -30,6 +30,9 @@ namespace CommandPattern
             // remove the dam object 
             _playerMover.damTiles.SetTile(_position, null);
 
+            // play sfx 
+            _gameState.audiosource.PlayOneShot(_gameState.breakDamSFX, 0.3f);
+
             // remove object on walkable tilemap
             _playerMover.walkableTiles.SetTile(_position, null);
 

@@ -6627,7 +6627,7 @@ MonoBehaviour:
   audiosource: {fileID: 0}
   moveSFX: {fileID: 8300000, guid: c3289eb12e1f406498732846ea718f35, type: 3}
   cantMoveSFX: {fileID: 8300000, guid: 98f570af061f9474b8990148d1b5409b, type: 3}
-  continuousMoveSFX: {fileID: 0}
+  continuousMoveSFX: {fileID: 8300000, guid: cb86191dbad037e41a102ac2ed7157cf, type: 3}
   upSprite: {fileID: 21300000, guid: 65d34d2021eaa7644adfdf7445206ea6, type: 3}
   downSprite: {fileID: 21300000, guid: baa8ebfa2b8489440b380138f5c8edf4, type: 3}
   leftSprite: {fileID: 21300000, guid: 85b2fb528d5104048b8b0953d69bb343, type: 3}
