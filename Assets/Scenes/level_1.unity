@@ -6633,6 +6633,7 @@ MonoBehaviour:
   leftSprite: {fileID: 21300000, guid: 85b2fb528d5104048b8b0953d69bb343, type: 3}
   rightSprite: {fileID: 21300000, guid: 4971109457812174c9df758778b8e948, type: 3}
   spriteRenderer: {fileID: 1669798341}
+  isMoving: 0
 --- !u!114 &1141103170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22336,7 +22337,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 35f600e285ad7f540a14ea0067d0572b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

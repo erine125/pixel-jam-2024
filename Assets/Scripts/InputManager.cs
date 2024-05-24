@@ -107,7 +107,7 @@ namespace CommandPattern
             // first, check if player is adjacent to the position. if not, do nothing.
             if (Math.Abs(clickedCell.x - playerCell.x) <= 1 && Math.Abs(clickedCell.y - playerCell.y) <= 1)
             {
-                if (ditchTilemap.HasTile(clickedCell))
+                if (ditchTilemap.HasTile(clickedCell) && !waterManager.driftwoodTilemap.HasTile(clickedCell))
                 {
                     if (damTilemap.HasTile(clickedCell))
                     {
@@ -116,7 +116,7 @@ namespace CommandPattern
                     }
                     else
                     {
-                        if (gameState.woodCount > 0)
+                        if (gameState.woodCount > 0 && !player.waterTiles.HasTile(clickedCell))
                         {
                             // call BuildDamCommand
                             ICommand command = new BuildDamCommand(playerMover, gameState, clickedCell);
@@ -140,26 +140,30 @@ namespace CommandPattern
 
             if (gridMovement != Vector3Int.zero)
             {
-                // check if movement is allowed
-                if (playerMover.IsValidMove(gridMovement))
+                // check if not currently moving
+                if (!playerMover.isMoving)  // Only allow a new move if currently not moving
                 {
-                    // check if player has any steps remaining
-                    if (gameState.stepsRemaining > 0)
+                    // check if movement is allowed
+                    if (playerMover.IsValidMove(gridMovement))
                     {
+                        // check if player has any steps remaining
+                        if (gameState.stepsRemaining > 0)
+                        {
 
-                        playerMover.CheckWin(gridMovement); // check if the space you are trying to move to is a winning space, if so we can simply exit 
+                            playerMover.CheckWin(gridMovement); // check if the space you are trying to move to is a winning space, if so we can simply exit 
 
-                        // invoke command. sfx will be played when command executes.
-                        ICommand command = new MoveCommand(playerMover, gameState, gridMovement, playerMover.foundObject(gridMovement));
-                        CommandInvoker.ExecuteCommand(command);
+                            // invoke command. sfx will be played when command executes.
+                            ICommand command = new MoveCommand(playerMover, gameState, gridMovement, playerMover.foundObject(gridMovement));
+                            CommandInvoker.ExecuteCommand(command);
+                        }
+                        else
+                        {
+                            // play sfx indicating can't move
+                            _audiosource.PlayOneShot(playerMover.cantMoveSFX, 0.3f);
+                        }
+
+
                     }
-                    else
-                    {
-                        // play sfx indicating can't move
-                        _audiosource.PlayOneShot(playerMover.cantMoveSFX, 0.3f);
-                    }
-
-
                 }
             }
         }

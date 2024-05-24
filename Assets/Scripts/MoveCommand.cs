@@ -28,35 +28,40 @@ namespace CommandPattern
 
         public void Execute()
         {
-            // play sound effect 
-            _audiosource.PlayOneShot(_playerMover.moveSFX, 0.3f);
+            
+                // play sound effect 
+                _audiosource.PlayOneShot(_playerMover.moveSFX, 0.3f);
 
-            // start movement animation coroutine 
-            _playerMover.StartCoroutine(_playerMover.MoveToPosition(_movement)); 
+                // start movement animation coroutine 
+                _playerMover.StartCoroutine(_playerMover.MoveToPosition(_movement));
 
-            // decrement steps 
-            _gameState.DecrementSteps();
-            Debug.LogFormat("Steps remaining: {0}", _gameState.stepsRemaining);
+                // decrement steps 
+                _gameState.DecrementSteps();
+                Debug.LogFormat("Steps remaining: {0}", _gameState.stepsRemaining);
 
-            if (_foundObject != null ) { // if we found an object on the tile we went to... 
-                if (_foundObject == "oil") // if the object was oil:
-                {
-                    _savedSteps = _gameState.ReplenishSteps(); // replenishSteps will return the saved number of steps, save this for undo 
-                    
-                    _savedPosition = _playerMover.clearObject(_movement); // remove oilcan from map. clearObject will return where it was, 
+                if (_foundObject != null)
+                { // if we found an object on the tile we went to... 
+                    if (_foundObject == "oil") // if the object was oil:
+                    {
+                        _savedSteps = _gameState.ReplenishSteps(); // replenishSteps will return the saved number of steps, save this for undo 
 
-                } else if (_foundObject == "aquacell")
-                {
-                    _gameState.IncrementAquacells(); // add aquacell to inventory and play animation 
-                    _savedPosition = _playerMover.clearObject(_movement);  // remove aquacell from map and save position
+                        _savedPosition = _playerMover.clearObject(_movement); // remove oilcan from map. clearObject will return where it was, 
 
-                } else if (_foundObject == "wood")
-                {
-                    Debug.Log("Found Wood");
-                    _gameState.IncrementWood();
-                    _savedPosition = _playerMover.clearObject(_movement);
+                    }
+                    else if (_foundObject == "aquacell")
+                    {
+                        _gameState.IncrementAquacells(); // add aquacell to inventory and play animation 
+                        _savedPosition = _playerMover.clearObject(_movement);  // remove aquacell from map and save position
+
+                    }
+                    else if (_foundObject == "wood")
+                    {
+                        Debug.Log("Found Wood");
+                        _gameState.IncrementWood();
+                        _savedPosition = _playerMover.clearObject(_movement);
+                    }
                 }
-            }
+            
 
         }
 

@@ -43,28 +43,8 @@ namespace CommandPattern
         public Sprite rightSprite;
         public SpriteRenderer spriteRenderer; // note that this sprite renderer is the one on the CHILD object 
 
+        public bool isMoving = false;
 
-
-        void OnDrawGizmos()
-        {
-            if (waterTiles == null)
-                return;
-
-            BoundsInt bounds = waterTiles.cellBounds;
-            Gizmos.color = Color.green;
-
-            // Draw a line around the perimeter of the cell bounds
-            Vector3 min = waterTiles.CellToWorld(new Vector3Int(bounds.xMin, bounds.yMin, bounds.zMin));
-            Vector3 max = waterTiles.CellToWorld(new Vector3Int(bounds.xMax, bounds.yMax, bounds.zMax));
-
-            // Draw the bottom rectangle
-            Gizmos.DrawLine(new Vector3(min.x, min.y, 0), new Vector3(max.x, min.y, 0));
-            Gizmos.DrawLine(new Vector3(min.x, min.y, 0), new Vector3(min.x, max.y, 0));
-            Gizmos.DrawLine(new Vector3(max.x, min.y, 0), new Vector3(max.x, max.y, 0));
-            Gizmos.DrawLine(new Vector3(min.x, max.y, 0), new Vector3(max.x, max.y, 0));
-
-
-        }
 
         private void Start()
         {
@@ -102,12 +82,15 @@ namespace CommandPattern
             if (winTiles.HasTile(targetCell)){
 
                 Debug.Log("Win!");
-                Vector3Int finalMovement = new Vector3Int(5, 0, 0);
-                audiosource.PlayOneShot(continuousMoveSFX, 0.4f);
-                StartCoroutine(MoveToPosition(finalMovement, LoadNextScene));
-                
-            }
+                //Vector3Int finalMovement = new Vector3Int(5, 0, 0);
+                //audiosource.PlayOneShot(continuousMoveSFX, 0.4f);
+                if (!isMoving) // Check if not currently moving
+                {
+                    //StartCoroutine(MoveToPosition(finalMovement, LoadNextScene));
 
+                    LoadNextScene();
+                }
+            }
         }
 
         public bool IsValidMove(Vector3Int gridMovement)
@@ -181,6 +164,7 @@ namespace CommandPattern
         // Coroutine method for animating player movement
         public IEnumerator MoveToPosition(Vector3Int gridMovement, Action onCompleted = null)
         {
+            isMoving = true;
             Vector3Int currentCell = grid.WorldToCell(transform.position);
             Vector3Int targetCell = currentCell + gridMovement;
             Vector3 targetPosition = grid.GetCellCenterWorld(targetCell);
@@ -194,6 +178,7 @@ namespace CommandPattern
                 yield return null;
             }
 
+            isMoving = false;
             onCompleted?.Invoke();
         }
 
